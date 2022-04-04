@@ -1,0 +1,3 @@
+quản trị viên:	admin@gmail.com			mật khẩu: 1
+giảng viên:	lecturer@gmail.com		mật khẩu: 1
+sinh viên:	1851050185vin@ou.edu.vn		mật khẩu: 1

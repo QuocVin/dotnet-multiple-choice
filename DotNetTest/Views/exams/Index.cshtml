@@ -1,0 +1,74 @@
+﻿@model IEnumerable<DotNetTest.Models.exam>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh sách các bài kiêm tra</h2
+
+<p>
+    @Html.ActionLink("Tạo mới bài kiểm tra", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Bài kiểm tra
+        </th>
+        <th>
+           Thời gian làm bài
+        </th>
+        <th>
+            Ngày bắt đầu
+        </th>
+        <th>
+            Ngày nộp bài
+        </th>
+        <th>
+            Trạng thái
+        </th>
+        <th>
+            Môn học
+        </th>
+        <th>
+            Người tạo
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.execution_time)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.start_time)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.expire_time)
+    </td>
+    
+    @if (@Html.DisplayFor(modelItem => item.active).ToString() == "1")
+    {
+        <td>hoạt động</td>
+    }
+    else
+    {
+        <td>bài thi đã đóng</td>
+    }
+    <td>
+        @Html.DisplayFor(modelItem => item.subject.name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.user.name)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+    </td>
+</tr>
+}
+
+</table>

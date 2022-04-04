@@ -1,0 +1,57 @@
+﻿
+@model DotNetTest.Models.exam
+
+<h1 class="text-center text-primary font-weight-bold">KIỂM TRA</h1>
+<br>
+<div class="container-fluid">
+    <div class="text-center">
+        <h3 class="font-weight-bold">
+            Môn học: @Html.DisplayFor(model => model.subject.name)
+        </h3>
+        <div class="font-weight-bold">
+            Bài kiểm tra: @Html.DisplayFor(model => model.name)
+        </div>
+        <div class="font-weight-bold">
+            Thời gian làm bài: @Html.DisplayFor(model => model.execution_time) phút
+        </div>
+        <div class="font-weight-bold">
+            Thời gian bắt đầu: @Html.DisplayFor(model => model.start_time)
+        </div>
+        <div class="font-weight-bold">
+            Thời gian hết hạn: @Html.DisplayFor(model => model.expire_time)
+        </div>
+
+    </div>
+
+    <form method="POST" action="{{route('scoreCompute')}}" enctype="multipart/form-data">
+        <ol>
+            @*@for (int i = 0; i < ViewBag.questions2; i++)*@
+            @for (int i = 0; i < ViewBag.questions3.Length; i++)
+            {
+                <div class="card" style="margin-top:20px">
+                    <div class="card-header">@ViewBag.questions3[i].content</div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <ol style="list-style-type:lower-alpha">
+                                <div class="row">
+                                    @foreach (var a in ViewBag.questions3[i].answers)
+                                    {
+                                        <div class="col-lg-3">
+                                            <input type="radio" id=@a value=@a.is_true name=@ViewBag.questions3[i].id />
+                                            <label for=@a.id class="font-weight-bold">@a.content</label>
+                                        </div>
+                                    }
+                                </div>
+
+                            </ol>
+
+                        </p>
+                    </div>
+                </div>
+            }
+
+            <input type="hidden" name="countQuestion" value={{sizeof($questions)}} />
+        </ol>
+        <button class="btn btn-lg btn-primary" type="submit">Nộp bài</button>
+    </form>
+</div>

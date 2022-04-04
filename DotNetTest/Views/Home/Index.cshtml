@@ -1,0 +1,28 @@
+﻿@model IEnumerable<DotNetTest.Models.subject>
+@using Microsoft.AspNet.Identity
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1>@ViewBag.user</h1>
+
+<div class="row">
+    <h1>Các bài thi hiện có</h1>
+
+    @if (User.Identity.GetUserName() == "admin@gmail.com" || User.Identity.GetUserName() == "1851050185vin@ou.edu.vn" || User.Identity.GetUserName() == "lecturer@gmail.com")
+    {
+        foreach (var item in Model)
+        {
+            <div>
+                <button type="button" class="btn btn-primary btn-lg" style="background-color: red">@Html.ActionLink(item.name, "DoExam", new { id = item.id })</button>
+            </div>
+        }
+    }
+    else
+    {
+        <h3>Vui lòng đăng nhập trước khi làm bài</h3>
+    }
+
+</div>
